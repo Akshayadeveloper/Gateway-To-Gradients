@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultimate GateWay To Gradient</title>
+  <!-- font links -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #FBDA61;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      overflow-x: hidden;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1;
+      padding: 20px;
+      max-width: 100%;
+    }
+
+    .color-inputs {
+      display: flex;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .color-input {
+      margin-right: 10px;
+    }
+
+    .color-input label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .gradient-preview {
+      width: 300px;
+      height: 100px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .gradient-options {
+      margin-bottom: 10px;
+    }
+
+    .gradient-option {
+      margin-right: 10px;
+    }
+
+    .result-code {
+      white-space: pre-wrap;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .copy-button {
+      padding: 5px 10px;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .donation-section {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .donation-button {
+      margin: 10px 0;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .eth-button {
+      background: linear-gradient(to bottom right, #00bcd4, #2196f3, #64b5f6);
+    }
+
+    .usdt-button {
+      background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    }
+
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #ff69b4;
+      transform: rotate(-45deg);
+      animation: flow 10s linear infinite;
+      opacity: 0;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #ff69b4;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
+/*
+    @keyframes flow {
+  0% {
+    transform: translate(0, 100vh) rotate(-45deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(var(--x) * 100vw), -100px) rotate(calc(var(--r) * 360deg));
+    opacity: 0;
+  }
+}
+*/
+    @keyframes flow {
+    0% {
+        transform: translate(0, 50vh) rotate(-45deg) scale(0.5);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(var(--x) * 50vw), -50px) rotate(calc(var(--r) * 360deg)) scale(1);
+        opacity: 0;
+    }
+}
+
+    .fas {
+      background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      font-family: roboto;
+    }
+
+    .testimonials {
+      margin-top: 30px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      max-width: 600px;
+    }
+
+    .testimonial {
+      margin-bottom: 15px;
+    }
+
+    .testimonial p {
+      font-style: italic;
+    }
+
+    .testimonial .name {
+      font-weight: bold;
+    }
+
+    .email-section {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .email-section input {
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+      max-width: 400px;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      font-size: 18px;
+      color: gold;
+    }
+
+    .donation-progress {
+      width: 100%;
+      background-color: #f3f3f3;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .donation-progress-bar {
+      height: 30px;
+      background-color: #4caf50;
+      width: 0%;
+    }
+     .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 80%;
+    }
+
+    .modal h2 {
+      color: #333;
+    }
+
+    .modal .address {
+      font-size: 16px;
+      color: #333;
+      word-wrap: break-word;
+    }
+
+    .modal .close {
+      background-color: #ff5c5c;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .modal .close:hover {
+      background-color: #ff4040;
+    }
+    .close {
+      background: linear-gradient(69deg, #3131b5, #b85cff, #5757ff);
+    }
+    #google_translate_element {
+      margin-bottom: 20px;
+    }
+   .footer{
+     justify-content: center;
+   }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element"></div>
+
+    <h1 class="fas">Ultimate GateWay To Gradient</h1>
+    <div class="color-inputs">
+      <div class="color-input">
+        <label for="color1">Color 1:</label>
+        <input type="color" id="color1" value="#ff0000">
+      </div>
+      <div class="color-input">
+        <label for="color2">Color 2:</label>
+        <input type="color" id="color2" value="#00ff00">
+      </div>
+      <div class="color-input">
+        <label for="color3">Color 3:</label>
+        <input type="color" id="color3" value="#0000ff">
+      </div>
+    </div>
+
+    <div class="gradient-options">
+      <div class="gradient-option">
+        <label for="gradient-type">Gradient Type:</label>
+        <select id="gradient-type">
+          <option value="linear">Linear</option>
+          <option value="radial">Radial</option>
+          <option value="conical">Conical</option>
+        </select>
+      </div>
+      <div class="gradient-option" id="linear-options" style="display: none;">
+        <label for="linear-angle">Angle:</label>
+        <input type="number" id="linear-angle" min="0" max="360" value="0">
+        <span>deg</span>
+      </div>
+      <div class="gradient-option" id="radial-options" style="display: none;">
+        <label for="radial-position">Position:</label>
+        <input type="text" id="radial-position" value="center">
+      </div>
+    </div>
+
+    <div class="gradient-preview" id="gradient-preview"></div>
+    <h2>Resulting CSS Code:</h2>
+    <pre class="result-code" id="result-code"></pre>
+    <button class="copy-button" onclick="copyToClipboard()">Copy CSS</button>
+    
+    <div class="donation-section">
+      <h2>Support Us</h2>
+      <button class="donation-button eth-button" onclick="donateETH()">Donate ETH (Optimism)</button>
+      <button class="donation-button usdt-button" onclick="donateUSDT()">Donate USDT (TRC20)</button>
+      
+        <!-- Modal -->
+    <div id="donationModal" class="modal">
+      <div class="modal-content">
+        <h2>Donation Details</h2>
+        <p id="donationAddress" class="address"></p>
+        <button class="close" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+ 
+      <!-- Donation Progress Tracker -->
+      <div class="donation-progress">
+        <div class="donation-progress-bar" id="donation-progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- User Testimonials -->
+    <div class="testimonials">
+      <h3>User Testimonials</h3>
+      <div class="testimonial">
+        <p>"This tool helped me create amazing color schemes for my website. Highly recommend!"</p>
+        <span class="name">William</span>
+      </div>
+      <div class="testimonial">
+        <p>"The gradient generator is a life-saver for web designers. A must-use tool."</p>
+        <span class="name">Jane Smith</span>
+      </div>
+    </div>
+
+    <!-- Email Subscription Section using Formspree -->
+    <div class="email-section">
+      <h3>Subscribe for Updates</h3>
+      <form action="https://formspree.io/f/xeooydzk" method="POST">
+  <input type="text" name="name" placeholder="Enter your name" required>
+  <input type="text" name="message" placeholder="Enter your thoughts" required>
+  <input type="email" name="email" placeholder="Enter your email" required>
+  <button type="submit" class="copy-button">Subscribe</button>
+</form>
+
+    </div>
+
+    <footer class="text-center">
+      <p><a href="https://github.com/Akshayadeveloper">My GitHub</a> | <a href="https://www.akshayaselvakumar.com">My Portfolio</a> | <a href="https://youtube.com/@Glory-Akshaya">My Channel</a></p>
+      <p>&copy; 2025 GateWay To Gradient . All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,es,fr,de,it,pt,ja,ko,zh-CN',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+const color1Input = document.getElementById('color1');
+const color2Input = document.getElementById('color2');
+const color3Input = document.getElementById('color3');
+const gradientTypeSelect = document.getElementById('gradient-type');
+const linearAngleInput = document.getElementById('linear-angle');
+const radialPositionInput = document.getElementById('radial-position');
+const gradientPreview = document.getElementById('gradient-preview');
+const resultCode = document.getElementById('result-code');
+const linearOptions = document.getElementById('linear-options');
+const radialOptions = document.getElementById('radial-options');
+
+function updateGradient() {
+  const color1 = color1Input.value;
+  const color2 = color2Input.value;
+  const color3 = color3Input.value;
+  const gradientType = gradientTypeSelect.value;
+  const linearAngle = linearAngleInput.value;
+  const radialPosition = radialPositionInput.value;
+
+  let gradientCSS;
+
+  switch (gradientType) {
+    case 'linear':
+      gradientCSS = `linear-gradient(${linearAngle}deg, ${color1}, ${color2}, ${color3})`;
+      break;
+    case 'radial':
+      gradientCSS = `radial-gradient(circle at ${radialPosition}, ${color1}, ${color2}, ${color3})`;
+      break;
+    case 'conical':
+      gradientCSS = `conic-gradient(from 0deg, ${color1}, ${color2}, ${color3})`;
+      break;
+    default:
+      gradientCSS = `linear-gradient(to right, ${color1}, ${color2})`;
+  }
+
+  gradientPreview.style.background = gradientCSS;
+  resultCode.textContent = `background: ${gradientCSS};`;
+}
+
+function showHideOptions() {
+  linearOptions.style.display = gradientTypeSelect.value === 'linear' ? 'block' : 'none';
+  radialOptions.style.display = gradientTypeSelect.value === 'radial' ? 'block' : 'none';
+}
+
+function copyToClipboard() {
+  const text = resultCode.textContent;
+  navigator.clipboard.writeText(text)
+    .then(() => {
+      alert('CSS code copied to clipboard!');
+    })
+    .catch(err => {
+      console.error('Failed to copy: ', err);
+      alert('Could not copy CSS code to clipboard.');
+    });
+}
+
+color1Input.addEventListener('input', updateGradient);
+color2Input.addEventListener('input', updateGradient);
+color3Input.addEventListener('input', updateGradient);
+gradientTypeSelect.addEventListener('change', () => {
+  updateGradient();
+  showHideOptions();
+});
+linearAngleInput.addEventListener('input', updateGradient);
+radialPositionInput.addEventListener('input', updateGradient);
+
+// Initial update
+updateGradient();
+showHideOptions();
+  
+  // Heart animation
+    function generateHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.setProperty('--x', Math.random());
+      heart.style.setProperty('--r', Math.random());
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    setInterval(generateHeart, 1000); 
+  
+  // donate process 
+     function donateETH() {
+      showModal('ETH Donation Address: 0xEc175e4bBF9c08757f1500d4065182BcDbc8EfD1'); // Update with your address
+    }
+
+    function donateUSDT() {
+      showModal('USDT Donation Address: TMbffubHu9K71asgSFzKQofpB7eZQXkDHt'); // Update with your address
+    }
+
+    function showModal(address) {
+      document.getElementById('donationAddress').textContent = address;
+      document.getElementById('donationModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('donationModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
