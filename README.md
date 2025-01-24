@@ -32,8 +32,8 @@ Welcome to the **Ultimate Gateway to Gradients**, a feature-rich platform tailor
 
 ### Clone the Repository  
 ```bash
-git clone https://github.com/Akshayadeveloper/gateway-to-gradients.git
-cd ultimate-gateway-to-gradients
+git clone https://github.com/Akshayadeveloper/Gateway-To-Gradients.git
+cd Gateway-To-Gradients
 ```
 
 ### Run the Application  
@@ -44,8 +44,8 @@ Open the `index.html` file in any modern browser to start using the tool.
 ## 📸 **Preview**  
 
 ### 🌟 Gradient Editor  
-![Gradient Editor Screenshot]( 
-<img src="Gemini_Generated_Image_yuoqltyuoqltyuoq">)  
+![Gradient Editor Screenshot] 
+<img src="Gemini_Generated_Image_yuoqltyuoqltyuoq.jpeg">
 
 ---
 
