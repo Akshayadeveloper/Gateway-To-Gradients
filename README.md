@@ -83,7 +83,7 @@ Love this project? Here's how you can support us:
 - Donate via **Trust Wallet, Binance, FaucetPay, CWallet, or an TON Wallet** to help us grow.  
 
 <img src="BTCQR1.jpg" alt="Bitcoin QR"> <p>BTC: <strong>bc1qzsj24zjxqlvu5wr3rs26wmzm0wvqjyc3emc5tl</strong></p>
-<img src=*TRC20.jpg" alt="USDT TRC20 QR"> <p>USDT TRC20: 
+<img src="TRC20.jpg" alt="USDT TRC20 QR"> <p>USDT TRC20: 
 <strong> TMbffubHu9K71asgSFzKQofpB7eZQXkDHt</strong></p>
 <img src="Etherum.png" alt="ETH"> <p> Optimism Network ETH: <strong>0xEc175e4bBF9c08757f1500d4065182BcDbc8EfD1</strong></p>
 
