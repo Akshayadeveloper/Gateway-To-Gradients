@@ -1,5 +1,5 @@
 # Gateway-To-Gradients
-https://akshayadeveloper.github.io/Gateway-To-Gradients/Gateway-To-Gradinets-App.html
+https://akshayadeveloper.github.io/Gateway-To-Gradients/Gateway-To-Gradients.html
 
 # 🌈 Ultimate Gateway to Gradients  
 
